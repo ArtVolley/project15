@@ -1,0 +1,47 @@
+<form [formGroup]="filterForm">
+    <div class="row mb-3">
+      <div class="col-12">
+        <h5>Найти сотрудника</h5>
+      </div>
+      <div class="offset-3 col-6">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Имя Фамилия"
+          formControlName="filterName"
+        />
+      </div>
+    </div>
+    <div class="row mb-3 justify-content-center">
+      <div class="">
+        <button class="btn btn-outline-primary" [disabled]="filterForm.invalid" (click)="onFilterWorker()">Фильтровать</button>
+      </div>
+    </div>
+    <hr>
+    <app-table-workers
+      [title]="'Найдено программистов'"
+      [workers]="getByType(myWorkerType.programmer) | filter: filteringName"
+      (editWorker)="onEdit($event)"
+      (deleteWorker)="onDeleteById($event)"
+    ></app-table-workers>
+    <app-table-workers
+      [title]="'Найдено дизайнеров'"
+      [workers]="getByType(myWorkerType.designer) | filter: filteringName"
+      (editWorker)="onEdit($event)"
+      (deleteWorker)="onDeleteById($event)"
+    ></app-table-workers>
+    <app-table-workers
+      [title]="'Найдено рекламщиков'"
+      [workers]="getByType(myWorkerType.copywriter) | filter: filteringName"
+      (editWorker)="onEdit($event)"
+      (deleteWorker)="onDeleteById($event)"
+    ></app-table-workers>
+    <app-table-workers
+      [title]="'Найдено менеджеров'"
+      [workers]="getByType(myWorkerType.manager) | filter: filteringName"
+      (editWorker)="onEdit($event)"
+      (deleteWorker)="onDeleteById($event)"
+    ></app-table-workers>
+    <hr>
+  </form>
+  

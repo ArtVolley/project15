@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button
+          class="btn btn-outline-dark btn-sm"
+          id="dropdownForm1"
+          ngbDropdownToggle
+        >
+          Редактировать
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownForm1" [style.width]="'250px'">
+          <form class="px-4 py-3" [formGroup]="editForm">
+            <div class="form-group">
+              <input
+                class="form-control"
+                placeholder="Имя"
+                formControlName="name"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                class="form-control"
+                placeholder="Фамилия"
+                formControlName="surname"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [textMask]="{mask: mask}"
+                class="form-control"
+                placeholder="Телефон"
+                formControlName="phone"
+              />
+            </div>
+            <div class="col-12" >
+              <select 
+                class="custom-select" 
+                formControlName = "selectType"
+                [style.width]="'200px'" 
+                [style.margin-left]="'-15px'"
+              >
+                <option *ngFor="let type of types" [ngValue]="type">{{ type.type }}</option>
+                <!-- <option [ngValue]="workerType.programmer">Программист</option>
+                <option [ngValue]="workerType.designer">Дизайнер</option>
+                <option [ngValue]="workerType.copywriter">Рекламщик</option>
+                <option [ngValue]="workerType.manager">Менеджер</option> -->
+              </select>
+            </div>
+            <button 
+              type="submit" 
+              class="btn btn-primary btn-sm mt-3"
+              [style.width]="'200px'"
+              (click)="onEditWorker()"
+              [disabled]="editForm.invalid"
+            >
+              Применить
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
